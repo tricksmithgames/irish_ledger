@@ -59,7 +59,7 @@ export const ui = {
   ga: {
     // Site
     'site.title': 'Irish Ledger',
-    'site.subtitle': 'An Mórleabhar Éireannach',
+    'site.subtitle': 'An Clár Éireannach',
     'site.tagline': 'Nuacht • Cultúr • Craic',
     'site.description': 'Do dhóis laethúil de nuacht, cultúr, agus craic na hÉireann',
 
