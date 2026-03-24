@@ -51,7 +51,7 @@ const p = (path: string) => getLocalePath(lang, path);
     <!-- Masthead -->
     <header class="masthead">
       <a href={p('/')} class="logo">{t('site.title')}</a>
-      {t('site.subtitle') && <p class="subtitle">{t('site.subtitle')}</p>}
+      {lang === 'ga' && <p class="subtitle">{t('site.subtitle')}</p>}
       <p class="tagline">{t('site.tagline')}</p>
     </header>
 
