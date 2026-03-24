@@ -51,6 +51,7 @@ const p = (path: string) => getLocalePath(lang, path);
     <!-- Masthead -->
     <header class="masthead">
       <a href={p('/')} class="logo">{t('site.title')}</a>
+      {t('site.subtitle') && <p class="subtitle">{t('site.subtitle')}</p>}
       <p class="tagline">{t('site.tagline')}</p>
     </header>
 
@@ -216,6 +217,14 @@ const p = (path: string) => getLocalePath(lang, path);
 
   .logo:hover {
     text-decoration: none;
+  }
+
+  .subtitle {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--color-text-secondary);
+    margin-top: 0.25rem;
   }
 
   .tagline {

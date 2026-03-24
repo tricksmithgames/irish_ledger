@@ -9,6 +9,7 @@ export const ui = {
   en: {
     // Site
     'site.title': 'Irish Ledger',
+    'site.subtitle': '',
     'site.tagline': 'News • Culture • Craic',
     'site.description': 'Your daily dose of Irish news, culture, and craic',
 
@@ -57,7 +58,8 @@ export const ui = {
   },
   ga: {
     // Site
-    'site.title': 'Iris Éireannach',
+    'site.title': 'Irish Ledger',
+    'site.subtitle': 'An Mórleabhar Éireannach',
     'site.tagline': 'Nuacht • Cultúr • Craic',
     'site.description': 'Do dhóis laethúil de nuacht, cultúr, agus craic na hÉireann',
 
