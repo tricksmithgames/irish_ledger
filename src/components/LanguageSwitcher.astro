@@ -1,0 +1,52 @@
+---
+import { languages, getLangFromUrl } from '../i18n/translations';
+
+const currentLang = getLangFromUrl(Astro.url);
+const currentPath = Astro.url.pathname.replace(/^\/(ga\/)?/, '/');
+---
+
+<div class="lang-switcher">
+  <a
+    href={currentPath}
+    class:list={['lang-link', { active: currentLang === 'en' }]}
+  >
+    English
+  </a>
+  <span class="lang-divider">|</span>
+  <a
+    href={`/ga${currentPath}`}
+    class:list={['lang-link', { active: currentLang === 'ga' }]}
+  >
+    Gaeilge
+  </a>
+</div>
+
+<style>
+  .lang-switcher {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .lang-link {
+    color: inherit;
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+
+  .lang-link:hover {
+    opacity: 1;
+    text-decoration: none;
+  }
+
+  .lang-link.active {
+    opacity: 1;
+    font-weight: 600;
+  }
+
+  .lang-divider {
+    opacity: 0.4;
+  }
+</style>

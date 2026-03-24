@@ -1,15 +1,28 @@
 ---
+import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+import { getLangFromUrl, useTranslations, getLocalePath } from '../i18n/translations';
+
 interface Props {
   title: string;
   description?: string;
 }
 
-const { title, description = "Your daily dose of Irish news, culture, and craic" } = Astro.props;
-const today = new Date().toLocaleDateString('en-IE', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const { title, description = t('site.description') } = Astro.props;
+const today = new Date().toLocaleDateString(lang === 'ga' ? 'ga-IE' : 'en-IE', {
+  weekday: 'long',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+
+const p = (path: string) => getLocalePath(lang, path);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,38 +31,40 @@ const today = new Date().toLocaleDateString('en-IE', { weekday: 'long', year: 'n
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
-    <title>{title} | Irish Ledger</title>
+    <title>{title} | {t('site.title')}</title>
   </head>
   <body>
     <!-- Top Bar -->
     <div class="top-bar">
       <div class="top-bar-inner">
         <span class="date">{today}</span>
+        <div class="top-bar-center">
+          <LanguageSwitcher />
+        </div>
         <div class="top-bar-right">
-          <a href="/games">Today's Games</a>
-          <a href="/subscribe" class="subscribe-btn">Subscribe</a>
+          <a href={p('/games')}>{t('topbar.todaysGames')}</a>
+          <a href={p('/subscribe')} class="subscribe-btn">{t('topbar.subscribe')}</a>
         </div>
       </div>
     </div>
 
     <!-- Masthead -->
     <header class="masthead">
-      <a href="/" class="logo">Irish Ledger</a>
-      <p class="tagline">News • Culture • Craic</p>
+      <a href={p('/')} class="logo">{t('site.title')}</a>
+      <p class="tagline">{t('site.tagline')}</p>
     </header>
 
     <!-- Main Navigation -->
     <nav class="main-nav">
       <div class="nav-inner">
         <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/news">News</a></li>
-          <li><a href="/culture">Culture</a></li>
-          <li><a href="/sport">Sport</a></li>
-          <li><a href="/diaspora">Diaspora</a></li>
-          <li><a href="/gaeilge">Gaeilge</a></li>
-          <li><a href="/opinion">Opinion</a></li>
-          <li><a href="/games" class="games-link">Games</a></li>
+          <li><a href={p('/')}>{t('nav.home')}</a></li>
+          <li><a href={p('/news')}>{t('nav.news')}</a></li>
+          <li><a href={p('/culture')}>{t('nav.culture')}</a></li>
+          <li><a href={p('/sport')}>{t('nav.sport')}</a></li>
+          <li><a href={p('/diaspora')}>{t('nav.diaspora')}</a></li>
+          <li><a href={p('/opinion')}>{t('nav.opinion')}</a></li>
+          <li><a href={p('/games')} class="games-link">{t('nav.games')}</a></li>
         </ul>
       </div>
     </nav>
@@ -62,34 +77,33 @@ const today = new Date().toLocaleDateString('en-IE', { weekday: 'long', year: 'n
     <footer class="site-footer">
       <div class="footer-inner">
         <div class="footer-section">
-          <h4>Sections</h4>
+          <h4>{t('footer.sections')}</h4>
           <ul>
-            <li><a href="/news">News</a></li>
-            <li><a href="/culture">Culture</a></li>
-            <li><a href="/sport">Sport</a></li>
-            <li><a href="/opinion">Opinion</a></li>
+            <li><a href={p('/news')}>{t('nav.news')}</a></li>
+            <li><a href={p('/culture')}>{t('nav.culture')}</a></li>
+            <li><a href={p('/sport')}>{t('nav.sport')}</a></li>
+            <li><a href={p('/opinion')}>{t('nav.opinion')}</a></li>
           </ul>
         </div>
         <div class="footer-section">
-          <h4>More</h4>
+          <h4>{t('footer.more')}</h4>
           <ul>
-            <li><a href="/games">Games</a></li>
-            <li><a href="/diaspora">Diaspora</a></li>
-            <li><a href="/gaeilge">Gaeilge</a></li>
-            <li><a href="/newsletter">Newsletter</a></li>
+            <li><a href={p('/games')}>{t('nav.games')}</a></li>
+            <li><a href={p('/diaspora')}>{t('nav.diaspora')}</a></li>
+            <li><a href={p('/newsletter')}>{t('footer.newsletter')}</a></li>
           </ul>
         </div>
         <div class="footer-section">
-          <h4>About</h4>
+          <h4>{t('footer.about')}</h4>
           <ul>
-            <li><a href="/about">About Us</a></li>
-            <li><a href="/contact">Contact</a></li>
-            <li><a href="/advertise">Advertise</a></li>
-            <li><a href="/privacy">Privacy</a></li>
+            <li><a href={p('/about')}>{t('footer.aboutUs')}</a></li>
+            <li><a href={p('/contact')}>{t('footer.contact')}</a></li>
+            <li><a href={p('/advertise')}>{t('footer.advertise')}</a></li>
+            <li><a href={p('/privacy')}>{t('footer.privacy')}</a></li>
           </ul>
         </div>
         <div class="footer-section">
-          <h4>Connect</h4>
+          <h4>{t('footer.connect')}</h4>
           <ul>
             <li><a href="#">Twitter/X</a></li>
             <li><a href="#">Facebook</a></li>
@@ -99,7 +113,7 @@ const today = new Date().toLocaleDateString('en-IE', { weekday: 'long', year: 'n
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} Irish Ledger. All rights reserved.</p>
+        <p>{t('footer.copyright', { year: new Date().getFullYear() })}</p>
       </div>
     </footer>
   </body>
@@ -155,6 +169,12 @@ const today = new Date().toLocaleDateString('en-IE', { weekday: 'long', year: 'n
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .top-bar-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .top-bar-right {
@@ -317,6 +337,17 @@ const today = new Date().toLocaleDateString('en-IE', { weekday: 'long', year: 'n
 
     .top-bar .date {
       display: none;
+    }
+
+    .top-bar-center {
+      position: static;
+      transform: none;
+    }
+
+    .top-bar-inner {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
     }
   }
 </style>

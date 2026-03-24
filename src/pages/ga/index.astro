@@ -1,0 +1,346 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { useTranslations } from '../../i18n/translations';
+
+const t = useTranslations('ga');
+
+// Placeholder data - would come from CMS/database (Irish versions)
+const heroStory = {
+  title: "Comhaontú Stairiúil ar Acht na Gaeilge",
+  summary: "Tacaíocht traspháirtí ag feiceáil reachtaíocht cheannródaíoch ag dul tríd tar éis na mblianta fada d'fheachtasaíocht.",
+  image: "https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?w=1200&h=600&fit=crop",
+  category: "Nuacht",
+  author: "Síle Ní Bhriain",
+  time: "2 uair ó shin"
+};
+
+const trending = [
+  { title: "Craobh CLG: Baile Átha Cliath vs Ciarraí", category: "Spórt" },
+  { title: "Féile Ceoil Traidisiúnta ag Filleadh ar Dhúlainn", category: "Cultúr" },
+  { title: "Gnólacht Teicneolaíochta Éireannach ag Ardú €50M", category: "Gnó" },
+  { title: "Taispeántas Nua sa Ghailearaí Náisiúnta", category: "Cultúr" },
+  { title: "Aimsir: Stoirm Atlantach ag Druidim", category: "Nuacht" },
+];
+
+const secondaryStories = [
+  {
+    title: "Guthanna an Diaspóra: Saol i bPobal Éireannach Bhostúin",
+    image: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=400&h=250&fit=crop",
+    category: "Diaspóra",
+    time: "4 uair ó shin"
+  },
+  {
+    title: "Athbheochan an Rince Sean-nós",
+    image: "https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?w=400&h=250&fit=crop",
+    category: "Cultúr",
+    time: "5 uair ó shin"
+  },
+  {
+    title: "Éire Tuaithe: Dúshláin os comhair Bailte Beaga",
+    image: "https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?w=400&h=250&fit=crop",
+    category: "Nuacht",
+    time: "6 uair ó shin"
+  },
+  {
+    title: "Lúthchleasaithe Éireannacha ag Ullmhú don Chraobh",
+    image: "https://images.unsplash.com/photo-1461896836934-480b97b?w=400&h=250&fit=crop",
+    category: "Spórt",
+    time: "7 uair ó shin"
+  },
+];
+
+const opinionPieces = [
+  { title: "Cén fáth a bhfuil gá ag Éirinn Polasaí Tithíochta a Athmhachnamh", author: "Cormac Ó Suilleabháin" },
+  { title: "Todhchaí na Gaeilge inár Scoileanna", author: "Máire Brennan" },
+  { title: "Gníomhú ar son na hAeráide: Am do Ghníomhartha Dána", author: "Eoin Murphy" },
+];
+
+const cultureStories = [
+  { title: "Scannán Nua Éireannach ag an bhFéile", category: "Scannán" },
+  { title: "File ag Baint Duais Liteartha", category: "Leabhair" },
+  { title: "Ealaín Sráide ag Athrú Lána i mBaile Átha Cliath", category: "Ealaín" },
+];
+---
+
+<Layout title="Baile" description="Iris Éireannach - Do dhóis laethúil de nuacht, cultúr, agus craic na hÉireann">
+  <div class="homepage">
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <article class="hero-story">
+        <a href="/ga/nuacht/hero-story">
+          <img src={heroStory.image} alt="" class="hero-image" />
+        </a>
+        <div class="hero-content">
+          <span class="category-tag">{heroStory.category}</span>
+          <h1><a href="/ga/nuacht/hero-story">{heroStory.title}</a></h1>
+          <p class="hero-summary">{heroStory.summary}</p>
+          <div class="hero-meta">
+            <span class="author">Le {heroStory.author}</span>
+            <span class="time">{heroStory.time}</span>
+          </div>
+        </div>
+      </article>
+
+      <aside class="trending-sidebar">
+        <h3 class="sidebar-title">{t('section.trending')}</h3>
+        <ol class="trending-list">
+          {trending.map((story, i) => (
+            <li>
+              <a href="#">
+                <span class="trending-num">{i + 1}</span>
+                <div>
+                  <span class="trending-category">{story.category}</span>
+                  <span class="trending-title">{story.title}</span>
+                </div>
+              </a>
+            </li>
+          ))}
+        </ol>
+      </aside>
+    </section>
+
+    <!-- Secondary Stories Grid -->
+    <section class="secondary-stories">
+      {secondaryStories.map(story => (
+        <article class="story-card">
+          <a href="#">
+            <img src={story.image} alt="" />
+          </a>
+          <div class="story-card-content">
+            <span class="category-tag small">{story.category}</span>
+            <h3><a href="#">{story.title}</a></h3>
+            <span class="time">{story.time}</span>
+          </div>
+        </article>
+      ))}
+    </section>
+
+    <!-- Section Modules -->
+    <section class="section-modules">
+
+      <!-- Opinion -->
+      <div class="module">
+        <h3 class="module-title">{t('section.opinion')}</h3>
+        <ul class="module-list">
+          {opinionPieces.map(piece => (
+            <li>
+              <a href="#">
+                <span class="opinion-title">{piece.title}</span>
+                <span class="opinion-author">{piece.author}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <a href="/ga/tuairim" class="module-link">{t('action.moreOpinion')}</a>
+      </div>
+
+      <!-- Culture -->
+      <div class="module">
+        <h3 class="module-title">{t('section.culture')}</h3>
+        <ul class="module-list">
+          {cultureStories.map(story => (
+            <li>
+              <a href="#">
+                <span class="culture-category">{story.category}</span>
+                <span class="culture-title">{story.title}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <a href="/ga/cultur" class="module-link">{t('action.moreCulture')}</a>
+      </div>
+
+      <!-- Games Module -->
+      <div class="module games-module">
+        <h3 class="module-title">{t('section.games')}</h3>
+        <div class="games-promo">
+          <a href="/ga/craicle" class="game-card">
+            <span class="game-icon">🟩</span>
+            <div>
+              <span class="game-name">{t('games.craicle')}</span>
+              <span class="game-desc">{t('games.craicleDesc')}</span>
+            </div>
+          </a>
+          <a href="/ga/cluichi" class="game-card">
+            <span class="game-icon">🃏</span>
+            <div>
+              <span class="game-name">{t('games.moreGames')}</span>
+              <span class="game-desc">{t('games.comingSoon')}</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+</Layout>
+
+<style>
+  /* Same styles as English version */
+  .homepage {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .hero-section {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 1.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .hero-story { display: flex; flex-direction: column; }
+  .hero-image { width: 100%; height: 400px; object-fit: cover; }
+  .hero-content { padding-top: 1rem; }
+
+  .category-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-accent);
+    margin-bottom: 0.5rem;
+  }
+  .category-tag.small { font-size: 0.7rem; }
+
+  .hero-content h1 {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+  }
+  .hero-content h1 a:hover { text-decoration: underline; }
+
+  .hero-summary {
+    font-size: 1.1rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+  }
+
+  .hero-meta { font-size: 0.85rem; color: var(--color-text-secondary); }
+  .hero-meta .author { font-weight: 600; }
+  .hero-meta .time::before { content: "·"; margin: 0 0.5rem; }
+
+  .trending-sidebar {
+    border-left: 1px solid var(--color-border);
+    padding-left: 1.5rem;
+  }
+
+  .sidebar-title {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-secondary);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-primary);
+  }
+
+  .trending-list { list-style: none; }
+  .trending-list li {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .trending-list li:last-child { border-bottom: none; }
+  .trending-list a { display: flex; gap: 0.75rem; align-items: flex-start; }
+
+  .trending-num {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ccc;
+    line-height: 1;
+  }
+
+  .trending-category {
+    display: block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  .trending-title { display: block; font-size: 0.9rem; font-weight: 600; line-height: 1.3; }
+
+  .secondary-stories {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .story-card img { width: 100%; height: 150px; object-fit: cover; }
+  .story-card-content { padding-top: 0.75rem; }
+  .story-card h3 { font-family: var(--font-serif); font-size: 1rem; line-height: 1.3; margin-top: 0.25rem; }
+  .story-card .time { font-size: 0.75rem; color: var(--color-text-secondary); }
+
+  .section-modules {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .module-title {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--color-primary);
+  }
+
+  .module-list { list-style: none; }
+  .module-list li { padding: 0.75rem 0; border-bottom: 1px solid var(--color-border); }
+  .module-list a { display: block; }
+
+  .opinion-title { display: block; font-family: var(--font-serif); font-weight: 700; line-height: 1.3; margin-bottom: 0.25rem; }
+  .opinion-author { font-size: 0.85rem; color: var(--color-text-secondary); }
+
+  .culture-category { display: block; font-size: 0.7rem; text-transform: uppercase; color: var(--color-accent); font-weight: 600; }
+  .culture-title { display: block; font-weight: 600; }
+
+  .module-link { display: inline-block; margin-top: 1rem; font-size: 0.85rem; font-weight: 600; color: var(--color-accent); }
+
+  .games-module { background: var(--color-bg-alt); padding: 1rem; border-radius: 4px; }
+  .games-promo { display: flex; flex-direction: column; gap: 0.75rem; }
+
+  .game-card {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: white;
+    border-radius: 4px;
+    border: 1px solid var(--color-border);
+    transition: border-color 0.2s;
+  }
+  .game-card:hover { text-decoration: none; border-color: var(--color-accent); }
+  .game-icon { font-size: 1.5rem; }
+  .game-name { display: block; font-weight: 700; }
+  .game-desc { display: block; font-size: 0.8rem; color: var(--color-text-secondary); }
+
+  @media (max-width: 1024px) {
+    .hero-section { grid-template-columns: 1fr; }
+    .trending-sidebar { border-left: none; border-top: 1px solid var(--color-border); padding-left: 0; padding-top: 1.5rem; }
+    .trending-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .secondary-stories { grid-template-columns: repeat(2, 1fr); }
+    .section-modules { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .hero-image { height: 250px; }
+    .hero-content h1 { font-size: 1.5rem; }
+    .secondary-stories { grid-template-columns: 1fr; }
+    .trending-list { grid-template-columns: 1fr; }
+  }
+</style>
