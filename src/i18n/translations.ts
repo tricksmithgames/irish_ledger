@@ -9,7 +9,7 @@ export const ui = {
   en: {
     // Site
     'site.title': 'Irish Ledger',
-    'site.subtitle': '',
+    'site.subtitle': 'Mórleabhar Éireannach',
     'site.tagline': 'News • Culture • Craic',
     'site.description': 'Your daily dose of Irish news, culture, and craic',
 
