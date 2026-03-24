@@ -1,5 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/translations';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 // Placeholder data - would come from CMS/database
 const heroStory = {
@@ -11,15 +15,7 @@ const heroStory = {
   time: "2 hours ago"
 };
 
-const trending = [
-  { title: "GAA Championship: Dublin vs Kerry Preview", category: "Sport" },
-  { title: "Traditional Music Festival Returns to Doolin", category: "Culture" },
-  { title: "Irish Tech Startup Raises €50M in Funding", category: "Business" },
-  { title: "New Exhibit Opens at National Gallery", category: "Culture" },
-  { title: "Weather: Atlantic Storm Approaching", category: "News" },
-];
-
-const secondaryStories = [
+const topStories = [
   {
     title: "Diaspora Voices: Life in Boston's Irish Community",
     image: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=400&h=250&fit=crop",
@@ -38,18 +34,27 @@ const secondaryStories = [
     category: "News",
     time: "6 hours ago"
   },
-  {
-    title: "Irish Athletes Prepare for Championships",
-    image: "https://images.unsplash.com/photo-1461896836934- voices-01a80feab?w=400&h=250&fit=crop",
-    category: "Sport",
-    time: "7 hours ago"
-  },
+];
+
+const moreNews = [
+  { title: "Government Announces New Infrastructure Plan", time: "8 hours ago" },
+  { title: "Cork Harbour Development Gets Green Light", time: "10 hours ago" },
+  { title: "Irish Scientists Make Breakthrough Discovery", time: "12 hours ago" },
+  { title: "Tourism Numbers Reach Record Highs", time: "14 hours ago" },
 ];
 
 const opinionPieces = [
   { title: "Why Ireland Needs to Rethink Housing Policy", author: "Cormac Ó Suilleabháin" },
   { title: "The Future of Irish in Our Schools", author: "Máire Brennan" },
   { title: "Climate Action: Time for Bold Moves", author: "Eoin Murphy" },
+];
+
+const trending = [
+  { title: "GAA Championship: Dublin vs Kerry Preview", category: "Sport" },
+  { title: "Traditional Music Festival Returns to Doolin", category: "Culture" },
+  { title: "Irish Tech Startup Raises €50M in Funding", category: "Business" },
+  { title: "New Exhibit Opens at National Gallery", category: "Culture" },
+  { title: "Weather: Atlantic Storm Approaching", category: "News" },
 ];
 
 const cultureStories = [
@@ -60,27 +65,111 @@ const cultureStories = [
 ---
 
 <Layout title="Home" description="Irish Ledger - Your daily source for Irish news, culture, sport, and games">
-  <div class="homepage">
+  <div class="two-column-layout">
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-      <article class="hero-story">
-        <a href="/news/hero-story">
+    <!-- Main Column (3/4) -->
+    <div class="main-column">
+
+      <!-- Hero Story -->
+      <article class="hero-cell">
+        <a href="/news/hero-story" class="hero-image-link">
           <img src={heroStory.image} alt="" class="hero-image" />
         </a>
         <div class="hero-content">
           <span class="category-tag">{heroStory.category}</span>
           <h1><a href="/news/hero-story">{heroStory.title}</a></h1>
           <p class="hero-summary">{heroStory.summary}</p>
-          <div class="hero-meta">
+          <div class="meta">
             <span class="author">By {heroStory.author}</span>
             <span class="time">{heroStory.time}</span>
           </div>
         </div>
       </article>
 
-      <aside class="trending-sidebar">
-        <h3 class="sidebar-title">Trending</h3>
+      <!-- Top Stories Row -->
+      <div class="stories-row">
+        {topStories.map(story => (
+          <article class="story-card">
+            <a href="#">
+              <img src={story.image} alt="" />
+            </a>
+            <div class="story-content">
+              <span class="category-tag small">{story.category}</span>
+              <h3><a href="#">{story.title}</a></h3>
+              <span class="time">{story.time}</span>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- Opinion Section -->
+      <section class="section-cell">
+        <h2 class="section-title">{t('section.opinion')}</h2>
+        <div class="opinion-grid">
+          {opinionPieces.map(piece => (
+            <article class="opinion-item">
+              <h3><a href="#">{piece.title}</a></h3>
+              <span class="author">{piece.author}</span>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- More News -->
+      <section class="section-cell">
+        <h2 class="section-title">{t('section.moreNews')}</h2>
+        <ul class="news-list">
+          {moreNews.map(story => (
+            <li>
+              <a href="#">
+                <span class="news-title">{story.title}</span>
+                <span class="time">{story.time}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <!-- Culture Section -->
+      <section class="section-cell">
+        <h2 class="section-title">{t('section.culture')}</h2>
+        <div class="culture-grid">
+          {cultureStories.map(story => (
+            <article class="culture-item">
+              <span class="culture-category">{story.category}</span>
+              <h3><a href="#">{story.title}</a></h3>
+            </article>
+          ))}
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Sidebar (1/4) -->
+    <aside class="sidebar">
+
+      <!-- Games Module -->
+      <div class="sidebar-module games-module">
+        <h3 class="module-title">{t('section.games')}</h3>
+        <a href="/craicle" class="game-card">
+          <span class="game-icon">🟩</span>
+          <div>
+            <span class="game-name">{t('games.craicle')}</span>
+            <span class="game-desc">{t('games.craicleDesc')}</span>
+          </div>
+        </a>
+        <a href="/games" class="game-card">
+          <span class="game-icon">🃏</span>
+          <div>
+            <span class="game-name">{t('games.moreGames')}</span>
+            <span class="game-desc">{t('games.comingSoon')}</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Trending -->
+      <div class="sidebar-module">
+        <h3 class="module-title">{t('section.trending')}</h3>
         <ol class="trending-list">
           {trending.map((story, i) => (
             <li>
@@ -94,133 +183,42 @@ const cultureStories = [
             </li>
           ))}
         </ol>
-      </aside>
-    </section>
-
-    <!-- Secondary Stories Grid -->
-    <section class="secondary-stories">
-      {secondaryStories.map(story => (
-        <article class="story-card">
-          <a href="#">
-            <img src={story.image} alt="" />
-          </a>
-          <div class="story-card-content">
-            <span class="category-tag small">{story.category}</span>
-            <h3><a href="#">{story.title}</a></h3>
-            <span class="time">{story.time}</span>
-          </div>
-        </article>
-      ))}
-    </section>
-
-    <!-- Section Modules -->
-    <section class="section-modules">
-
-      <!-- Opinion -->
-      <div class="module">
-        <h3 class="module-title">Opinion</h3>
-        <ul class="module-list">
-          {opinionPieces.map(piece => (
-            <li>
-              <a href="#">
-                <span class="opinion-title">{piece.title}</span>
-                <span class="opinion-author">{piece.author}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
-        <a href="/opinion" class="module-link">More Opinion →</a>
       </div>
 
-      <!-- Culture -->
-      <div class="module">
-        <h3 class="module-title">Culture</h3>
-        <ul class="module-list">
-          {cultureStories.map(story => (
-            <li>
-              <a href="#">
-                <span class="culture-category">{story.category}</span>
-                <span class="culture-title">{story.title}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
-        <a href="/culture" class="module-link">More Culture →</a>
+      <!-- Newsletter Signup -->
+      <div class="sidebar-module newsletter-module">
+        <h3 class="module-title">Newsletter</h3>
+        <p>Get the best of Irish Ledger delivered daily.</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Your email" />
+          <button type="submit">Sign Up</button>
+        </form>
       </div>
 
-      <!-- Games Module -->
-      <div class="module games-module">
-        <h3 class="module-title">Games</h3>
-        <div class="games-promo">
-          <a href="/craicle" class="game-card">
-            <span class="game-icon">🟩</span>
-            <div>
-              <span class="game-name">Craicle</span>
-              <span class="game-desc">Daily word game</span>
-            </div>
-          </a>
-          <a href="/games" class="game-card">
-            <span class="game-icon">🃏</span>
-            <div>
-              <span class="game-name">More Games</span>
-              <span class="game-desc">Coming soon</span>
-            </div>
-          </a>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- More News -->
-    <section class="more-news">
-      <h3 class="section-title">More News</h3>
-      <div class="news-list">
-        <article class="news-item">
-          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=150&h=100&fit=crop" alt="" />
-          <div>
-            <h4><a href="#">Government Announces New Infrastructure Plan</a></h4>
-            <span class="time">8 hours ago</span>
-          </div>
-        </article>
-        <article class="news-item">
-          <img src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=150&h=100&fit=crop" alt="" />
-          <div>
-            <h4><a href="#">Cork Harbour Development Gets Green Light</a></h4>
-            <span class="time">10 hours ago</span>
-          </div>
-        </article>
-        <article class="news-item">
-          <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=150&h=100&fit=crop" alt="" />
-          <div>
-            <h4><a href="#">Irish Scientists Make Breakthrough Discovery</a></h4>
-            <span class="time">12 hours ago</span>
-          </div>
-        </article>
-      </div>
-    </section>
+    </aside>
 
   </div>
 </Layout>
 
 <style>
-  .homepage {
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
-  }
-
-  /* Hero Section */
-  .hero-section {
+  /* Two Column Layout */
+  .two-column-layout {
     display: grid;
-    grid-template-columns: 1fr 300px;
-    gap: 1.5rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid var(--color-border);
+    grid-template-columns: 3fr 1fr;
+    gap: 2rem;
   }
 
-  .hero-story {
+  /* Main Column */
+  .main-column {
     display: flex;
     flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  /* Hero Cell */
+  .hero-cell {
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 1.5rem;
   }
 
   .hero-image {
@@ -261,99 +259,40 @@ const cultureStories = [
   .hero-summary {
     font-size: 1.1rem;
     color: var(--color-text-secondary);
-    margin-bottom: 0.75rem;
     line-height: 1.6;
+    margin-bottom: 0.75rem;
   }
 
-  .hero-meta {
+  .meta {
     font-size: 0.85rem;
     color: var(--color-text-secondary);
   }
 
-  .hero-meta .author {
+  .meta .author {
     font-weight: 600;
   }
 
-  .hero-meta .time::before {
+  .meta .time::before {
     content: "·";
     margin: 0 0.5rem;
   }
 
-  /* Trending Sidebar */
-  .trending-sidebar {
-    border-left: 1px solid var(--color-border);
-    padding-left: 1.5rem;
-  }
-
-  .sidebar-title {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--color-text-secondary);
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--color-primary);
-  }
-
-  .trending-list {
-    list-style: none;
-  }
-
-  .trending-list li {
-    margin-bottom: 1rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .trending-list li:last-child {
-    border-bottom: none;
-  }
-
-  .trending-list a {
-    display: flex;
-    gap: 0.75rem;
-    align-items: flex-start;
-  }
-
-  .trending-num {
-    font-family: var(--font-serif);
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #ccc;
-    line-height: 1;
-  }
-
-  .trending-category {
-    display: block;
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    color: var(--color-accent);
-    font-weight: 600;
-  }
-
-  .trending-title {
-    display: block;
-    font-size: 0.9rem;
-    font-weight: 600;
-    line-height: 1.3;
-  }
-
-  /* Secondary Stories */
-  .secondary-stories {
+  /* Stories Row */
+  .stories-row {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
-    padding-bottom: 2rem;
     border-bottom: 1px solid var(--color-border);
+    padding-bottom: 1.5rem;
   }
 
   .story-card img {
     width: 100%;
-    height: 150px;
+    height: 140px;
     object-fit: cover;
   }
 
-  .story-card-content {
+  .story-content {
     padding-top: 0.75rem;
   }
 
@@ -369,13 +308,102 @@ const cultureStories = [
     color: var(--color-text-secondary);
   }
 
-  /* Section Modules */
-  .section-modules {
+  /* Section Cells */
+  .section-cell {
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 1.5rem;
+  }
+
+  .section-title {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--color-primary);
+  }
+
+  /* Opinion Grid */
+  .opinion-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    padding-bottom: 2rem;
+    gap: 1.5rem;
+  }
+
+  .opinion-item h3 {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+  }
+
+  .opinion-item .author {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+  }
+
+  /* News List */
+  .news-list {
+    list-style: none;
+  }
+
+  .news-list li {
     border-bottom: 1px solid var(--color-border);
+  }
+
+  .news-list li:last-child {
+    border-bottom: none;
+  }
+
+  .news-list a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+  }
+
+  .news-title {
+    font-weight: 600;
+  }
+
+  .time {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    white-space: nowrap;
+  }
+
+  /* Culture Grid */
+  .culture-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .culture-item h3 {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+
+  .culture-category {
+    display: block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .sidebar-module {
+    border: 1px solid var(--color-border);
+    padding: 1rem;
   }
 
   .module-title {
@@ -387,64 +415,10 @@ const cultureStories = [
     border-bottom: 2px solid var(--color-primary);
   }
 
-  .module-list {
-    list-style: none;
-  }
-
-  .module-list li {
-    padding: 0.75rem 0;
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .module-list a {
-    display: block;
-  }
-
-  .opinion-title {
-    display: block;
-    font-family: var(--font-serif);
-    font-weight: 700;
-    line-height: 1.3;
-    margin-bottom: 0.25rem;
-  }
-
-  .opinion-author {
-    font-size: 0.85rem;
-    color: var(--color-text-secondary);
-  }
-
-  .culture-category {
-    display: block;
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    color: var(--color-accent);
-    font-weight: 600;
-  }
-
-  .culture-title {
-    display: block;
-    font-weight: 600;
-  }
-
-  .module-link {
-    display: inline-block;
-    margin-top: 1rem;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--color-accent);
-  }
-
   /* Games Module */
   .games-module {
     background: var(--color-bg-alt);
-    padding: 1rem;
-    border-radius: 4px;
-  }
-
-  .games-promo {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
+    border: none;
   }
 
   .game-card {
@@ -453,9 +427,13 @@ const cultureStories = [
     gap: 0.75rem;
     padding: 0.75rem;
     background: white;
-    border-radius: 4px;
     border: 1px solid var(--color-border);
+    margin-bottom: 0.5rem;
     transition: border-color 0.2s;
+  }
+
+  .game-card:last-child {
+    margin-bottom: 0;
   }
 
   .game-card:hover {
@@ -478,77 +456,109 @@ const cultureStories = [
     color: var(--color-text-secondary);
   }
 
-  /* More News */
-  .section-title {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    padding-bottom: 0.5rem;
-    margin-bottom: 1rem;
-    border-bottom: 2px solid var(--color-primary);
+  /* Trending */
+  .trending-list {
+    list-style: none;
   }
 
-  .news-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .news-item {
-    display: flex;
-    gap: 1rem;
-    padding-bottom: 1rem;
+  .trending-list li {
+    padding-bottom: 0.75rem;
+    margin-bottom: 0.75rem;
     border-bottom: 1px solid var(--color-border);
   }
 
-  .news-item img {
-    width: 120px;
-    height: 80px;
-    object-fit: cover;
-    flex-shrink: 0;
+  .trending-list li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
   }
 
-  .news-item h4 {
+  .trending-list a {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .trending-num {
     font-family: var(--font-serif);
-    font-size: 1rem;
-    line-height: 1.3;
-    margin-bottom: 0.25rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ccc;
+    line-height: 1;
+    min-width: 1.5rem;
   }
 
-  .news-item .time {
-    font-size: 0.75rem;
+  .trending-category {
+    display: block;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  .trending-title {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  /* Newsletter */
+  .newsletter-module p {
+    font-size: 0.9rem;
     color: var(--color-text-secondary);
+    margin-bottom: 1rem;
+  }
+
+  .newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .newsletter-form input {
+    padding: 0.6rem;
+    border: 1px solid var(--color-border);
+    font-size: 0.9rem;
+  }
+
+  .newsletter-form button {
+    padding: 0.6rem;
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .newsletter-form button:hover {
+    opacity: 0.9;
   }
 
   /* Responsive */
   @media (max-width: 1024px) {
-    .hero-section {
+    .two-column-layout {
       grid-template-columns: 1fr;
     }
 
-    .trending-sidebar {
-      border-left: none;
-      border-top: 1px solid var(--color-border);
-      padding-left: 0;
-      padding-top: 1.5rem;
-    }
-
-    .trending-list {
+    .sidebar {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
     }
 
-    .secondary-stories {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .section-modules {
-      grid-template-columns: 1fr;
+    .newsletter-module {
+      grid-column: span 2;
     }
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 768px) {
+    .stories-row,
+    .opinion-grid,
+    .culture-grid {
+      grid-template-columns: 1fr;
+    }
+
     .hero-image {
       height: 250px;
     }
@@ -557,12 +567,12 @@ const cultureStories = [
       font-size: 1.5rem;
     }
 
-    .secondary-stories {
+    .sidebar {
       grid-template-columns: 1fr;
     }
 
-    .trending-list {
-      grid-template-columns: 1fr;
+    .newsletter-module {
+      grid-column: span 1;
     }
   }
 </style>
