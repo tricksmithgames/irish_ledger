@@ -4,14 +4,19 @@
   "description": "AI-powered Irish digital newspaper with games, community content, and bilingual support",
   "type": "module",
   "scripts": {
-    "dev": "echo 'TODO: Add dev server'",
-    "build": "echo 'TODO: Add build script'"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
   },
   "dependencies": {
-    "firebase": "^10.8.0"
+    "@astrojs/react": "^5.0.1",
+    "astro": "^6.0.8",
+    "firebase": "^10.8.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
   },
   "devDependencies": {
-    "typescript": "^5.3.0",
-    "@types/node": "^20.0.0"
+    "@types/node": "^20.0.0",
+    "typescript": "^5.3.0"
   }
 }
