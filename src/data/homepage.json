@@ -1,0 +1,15 @@
+{
+  "heroStory": {
+    "slug": "placeholder-hero",
+    "title": "Welcome to Irish Ledger",
+    "summary": "Your daily source for Irish news, culture, and connection to home.",
+    "image": "https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?w=1200&h=600&fit=crop",
+    "category": "News",
+    "author": "Irish Ledger Staff",
+    "time": "Just now"
+  },
+  "topStories": [],
+  "moreNews": [],
+  "trending": [],
+  "lastUpdated": "2024-03-25T12:00:00Z"
+}
