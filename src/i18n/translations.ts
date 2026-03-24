@@ -59,7 +59,7 @@ export const ui = {
   ga: {
     // Site
     'site.title': 'Irish Ledger',
-    'site.subtitle': 'Clár Éireannach',
+    'site.subtitle': 'Mórleabhar Éireannach',
     'site.tagline': 'Nuacht • Cultúr • Craic',
     'site.description': 'Do dhóis laethúil de nuacht, cultúr, agus craic na hÉireann',
 
@@ -100,7 +100,7 @@ export const ui = {
     'footer.advertise': 'Fógraíocht',
     'footer.privacy': 'Príobháideachas',
     'footer.newsletter': 'Nuachtlitir',
-    'footer.copyright': '© {year} Iris Éireannach. Gach ceart ar cosaint.',
+    'footer.copyright': '© {year} Mórleabhar Éireannach. Gach ceart ar cosaint.',
 
     // Actions
     'action.moreOpinion': 'Tuilleadh Tuairimí →',
