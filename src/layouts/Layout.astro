@@ -4,7 +4,8 @@ interface Props {
   description?: string;
 }
 
-const { title, description = "AI-powered Irish digital newspaper" } = Astro.props;
+const { title, description = "Your daily dose of Irish news, culture, and craic" } = Astro.props;
+const today = new Date().toLocaleDateString('en-IE', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 ---
 
 <!doctype html>
@@ -14,26 +15,92 @@ const { title, description = "AI-powered Irish digital newspaper" } = Astro.prop
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
     <title>{title} | Irish Ledger</title>
   </head>
   <body>
-    <header>
-      <nav>
-        <a href="/" class="logo">Irish Ledger</a>
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <div class="top-bar-inner">
+        <span class="date">{today}</span>
+        <div class="top-bar-right">
+          <a href="/games">Today's Games</a>
+          <a href="/subscribe" class="subscribe-btn">Subscribe</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Masthead -->
+    <header class="masthead">
+      <a href="/" class="logo">Irish Ledger</a>
+      <p class="tagline">News • Culture • Craic</p>
+    </header>
+
+    <!-- Main Navigation -->
+    <nav class="main-nav">
+      <div class="nav-inner">
         <ul>
           <li><a href="/">Home</a></li>
-          <li><a href="/craicle">Craicle</a></li>
           <li><a href="/news">News</a></li>
+          <li><a href="/culture">Culture</a></li>
+          <li><a href="/sport">Sport</a></li>
+          <li><a href="/diaspora">Diaspora</a></li>
+          <li><a href="/gaeilge">Gaeilge</a></li>
+          <li><a href="/opinion">Opinion</a></li>
+          <li><a href="/games" class="games-link">Games</a></li>
         </ul>
-      </nav>
-    </header>
+      </div>
+    </nav>
 
     <main>
       <slot />
     </main>
 
-    <footer>
-      <p>&copy; {new Date().getFullYear()} Irish Ledger</p>
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-section">
+          <h4>Sections</h4>
+          <ul>
+            <li><a href="/news">News</a></li>
+            <li><a href="/culture">Culture</a></li>
+            <li><a href="/sport">Sport</a></li>
+            <li><a href="/opinion">Opinion</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>More</h4>
+          <ul>
+            <li><a href="/games">Games</a></li>
+            <li><a href="/diaspora">Diaspora</a></li>
+            <li><a href="/gaeilge">Gaeilge</a></li>
+            <li><a href="/newsletter">Newsletter</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>About</h4>
+          <ul>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/advertise">Advertise</a></li>
+            <li><a href="/privacy">Privacy</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="#">Twitter/X</a></li>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">RSS</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; {new Date().getFullYear()} Irish Ledger. All rights reserved.</p>
+      </div>
     </footer>
   </body>
 </html>
@@ -46,66 +113,210 @@ const { title, description = "AI-powered Irish digital newspaper" } = Astro.prop
   }
 
   :root {
-    --color-primary: #1a5f2a;
-    --color-secondary: #ff8c00;
-    --color-bg: #fefefe;
-    --color-text: #1a1a1a;
-    --font-body: system-ui, -apple-system, sans-serif;
+    --color-primary: #121212;
+    --color-accent: #567b2e;
+    --color-border: #e0e0e0;
+    --color-bg: #ffffff;
+    --color-bg-alt: #f7f7f7;
+    --color-text: #121212;
+    --color-text-secondary: #666666;
+    --font-serif: 'Libre Baskerville', Georgia, serif;
+    --font-sans: 'Source Sans 3', system-ui, sans-serif;
   }
 
   body {
-    font-family: var(--font-body);
+    font-family: var(--font-sans);
     background: var(--color-bg);
     color: var(--color-text);
-    line-height: 1.6;
+    line-height: 1.5;
   }
 
-  header {
-    background: var(--color-primary);
-    padding: 1rem 2rem;
-  }
-
-  nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .logo {
-    color: white;
-    font-size: 1.5rem;
-    font-weight: bold;
+  a {
+    color: inherit;
     text-decoration: none;
   }
 
-  nav ul {
-    display: flex;
-    gap: 1.5rem;
-    list-style: none;
-  }
-
-  nav a {
-    color: white;
-    text-decoration: none;
-  }
-
-  nav a:hover {
+  a:hover {
     text-decoration: underline;
   }
 
+  /* Top Bar */
+  .top-bar {
+    background: var(--color-primary);
+    color: white;
+    font-size: 0.8rem;
+    padding: 0.5rem 0;
+  }
+
+  .top-bar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .top-bar-right {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .top-bar a {
+    color: white;
+  }
+
+  .subscribe-btn {
+    background: var(--color-accent);
+    padding: 0.35rem 0.75rem;
+    border-radius: 3px;
+    font-weight: 600;
+  }
+
+  .subscribe-btn:hover {
+    text-decoration: none;
+    opacity: 0.9;
+  }
+
+  /* Masthead */
+  .masthead {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .logo {
+    font-family: var(--font-serif);
+    font-size: 2.75rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .logo:hover {
+    text-decoration: none;
+  }
+
+  .tagline {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    margin-top: 0.25rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Main Nav */
+  .main-nav {
+    border-bottom: 2px solid var(--color-primary);
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 100;
+  }
+
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .main-nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 0.25rem;
+    list-style: none;
+    flex-wrap: wrap;
+  }
+
+  .main-nav a {
+    display: block;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+
+  .main-nav a:hover {
+    background: var(--color-bg-alt);
+    text-decoration: none;
+  }
+
+  .games-link {
+    color: var(--color-accent) !important;
+  }
+
+  /* Main Content */
   main {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem;
-    min-height: calc(100vh - 200px);
+    padding: 1.5rem 1rem;
   }
 
-  footer {
-    background: var(--color-text);
+  /* Footer */
+  .site-footer {
+    background: var(--color-primary);
     color: white;
+    margin-top: 3rem;
+    padding-top: 2.5rem;
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 2rem;
+  }
+
+  .footer-section h4 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+    color: #999;
+  }
+
+  .footer-section ul {
+    list-style: none;
+  }
+
+  .footer-section li {
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-section a {
+    color: #ccc;
+    font-size: 0.9rem;
+  }
+
+  .footer-section a:hover {
+    color: white;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid #333;
+    margin-top: 2rem;
+    padding: 1.5rem 1rem;
     text-align: center;
-    padding: 2rem;
+    font-size: 0.8rem;
+    color: #666;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .logo {
+      font-size: 2rem;
+    }
+
+    .main-nav a {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.85rem;
+    }
+
+    .top-bar .date {
+      display: none;
+    }
   }
 </style>
