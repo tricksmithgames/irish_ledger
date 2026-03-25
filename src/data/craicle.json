@@ -1,16 +1,16 @@
 {
-  "gameNumber": 1,
-  "date": "2024-03-25",
-  "word": "CRAIC",
-  "hint": "Irish slang for fun, entertainment, and good times",
-  "difficulty": "easy",
-  "category": "slang",
-  "tied_to_article": null,
-  "fun_fact": "The word 'craic' came to Irish English from the Scots word 'crack' meaning conversation, but is now considered quintessentially Irish",
-  "irish_translation": "Craic",
-  "pronunciation": "KRAK",
+  "gameNumber": 2,
+  "date": "2026-03-25",
+  "word": "CEILI",
+  "hint": "A traditional Irish social gathering of music, song, and dance — the heartbeat of Irish community life",
+  "difficulty": "medium",
+  "category": "cultural",
+  "tied_to_article": "sean-nos-revival",
+  "fun_fact": "Céilís have been bringing Irish communities together for centuries — from rural parish halls in Connaught to Boston ballrooms, they're where friendships are forged and traditions are passed down",
+  "irish_translation": "Céilí",
+  "pronunciation": "KAY-lee",
   "sharing": {
-    "text": "Craicle #1\n\nI got today's Irish word!\n\nPlay at irishledger.com/craicle",
-    "hashtags": ["Craicle", "IrishLedger"]
+    "text": "Craicle #2 🟩🟩🟩🟩🟩\n\nI got today's Irish word in X guesses!\n\nPlay at irishledger.com/craicle",
+    "hashtags": ["Craicle", "IrishLedger", "Wordle"]
   }
 }

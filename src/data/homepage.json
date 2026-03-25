@@ -1,48 +1,52 @@
 {
   "heroStory": {
-    "slug": "welcome-to-irish-ledger",
-    "title": "Welcome to Irish Ledger",
-    "summary": "Your daily source for Irish news, culture, and connection to home. We serve the 70 million strong Irish diaspora worldwide.",
-    "image": "https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?w=1200&h=600&fit=crop",
-    "category": "News",
+    "slug": "ireland-czechia-world-cup-playoff-preview-2026",
+    "title": "Ireland vs Czechia: Everything You Need to Watch Thursday's World Cup Play-Off From Abroad",
+    "summary": "Ireland face Czechia in Prague on Thursday in a World Cup 2026 play-off semi-final. Here's when to watch, how to stream, and what's at stake for the diaspora.",
+    "image": "/images/placeholder-sport.jpg",
+    "category": "Sport",
     "author": "Irish Ledger Staff",
     "time": "Just now"
   },
   "topStories": [
     {
-      "slug": "diaspora-boston",
-      "title": "Diaspora Voices: Life in Boston's Irish Community",
-      "image": "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=400&h=250&fit=crop",
+      "slug": "donegal-kerry-nfl-division-1-final-2026-watch-abroad",
+      "title": "Donegal vs Kerry: How to Watch This Weekend's NFL Division 1 Final From Abroad",
+      "image": "/images/placeholder-sport.jpg",
+      "category": "Sport",
+      "time": "1 hour ago"
+    },
+    {
+      "slug": "ireland-emigration-staying-should-be-a-right",
+      "title": "'Staying Should Be a Right': How Ireland Told a Generation to Leave — and Why That Still Hurts",
+      "image": "/images/placeholder-diaspora.jpg",
       "category": "Diaspora",
-      "time": "4 hours ago"
+      "time": "2 hours ago"
     },
     {
-      "slug": "sean-nos-revival",
-      "title": "The Revival of Sean-nós Dancing",
-      "image": "https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?w=400&h=250&fit=crop",
-      "category": "Culture",
-      "time": "5 hours ago"
-    },
-    {
-      "slug": "rural-ireland-challenges",
-      "title": "Rural Ireland: Challenges Facing Small Towns",
-      "image": "https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?w=400&h=250&fit=crop",
+      "slug": "ireland-housing-new-builds-collapse-diaspora",
+      "title": "New Homes in Ireland Down 75%: What the Construction Collapse Means If You're Thinking of Moving Back",
+      "image": "/images/placeholder-news.jpg",
       "category": "News",
-      "time": "6 hours ago"
+      "time": "3 hours ago"
     }
   ],
   "moreNews": [
-    { "slug": "infrastructure-plan", "title": "Government Announces New Infrastructure Plan", "time": "8 hours ago" },
-    { "slug": "cork-harbour", "title": "Cork Harbour Development Gets Green Light", "time": "10 hours ago" },
-    { "slug": "science-breakthrough", "title": "Irish Scientists Make Breakthrough Discovery", "time": "12 hours ago" },
-    { "slug": "tourism-record", "title": "Tourism Numbers Reach Record Highs", "time": "14 hours ago" }
+    {
+      "slug": "housing-crisis-gaeltacht-irish-language-death",
+      "title": "The Housing Crisis Is Hollowing Out the Heartland of the Irish Language — and We Should All Be Worried",
+      "time": "8 hours ago"
+    },
+    {
+      "slug": "shared-home-place-diaspora-voices-how-to-get-involved",
+      "title": "Ireland Wants to Hear From You: How to Get Involved in the New Diaspora Voices Project",
+      "time": "10 hours ago"
+    },
+    {
+      "slug": "what-irish-emigrants-miss-about-home",
+      "title": "'They Don't Take Themselves Too Seriously': What Irish People Abroad Actually Miss About Home",
+      "time": "12 hours ago"
+    }
   ],
-  "trending": [
-    { "slug": "gaa-championship", "title": "GAA Championship: Dublin vs Kerry Preview", "category": "Sport" },
-    { "slug": "doolin-festival", "title": "Traditional Music Festival Returns to Doolin", "category": "Culture" },
-    { "slug": "tech-funding", "title": "Irish Tech Startup Raises €50M in Funding", "category": "Business" },
-    { "slug": "national-gallery", "title": "New Exhibit Opens at National Gallery", "category": "Culture" },
-    { "slug": "atlantic-storm", "title": "Weather: Atlantic Storm Approaching", "category": "News" }
-  ],
-  "lastUpdated": "2024-03-25T12:00:00Z"
+  "lastUpdated": "2026-03-24T12:00:00Z"
 }

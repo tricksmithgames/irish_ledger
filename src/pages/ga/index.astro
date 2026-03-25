@@ -1,59 +1,18 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { useTranslations } from '../../i18n/translations';
+import homepageData from '../../data/homepage.json';
 
 const t = useTranslations('ga');
 
-// Placeholder data - would come from CMS/database (Irish versions)
-const heroStory = {
-  title: "Comhaontú Stairiúil ar Acht na Gaeilge",
-  summary: "Tacaíocht traspháirtí ag feiceáil reachtaíocht cheannródaíoch ag dul tríd tar éis na mblianta fada d'fheachtasaíocht.",
-  image: "https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?w=1200&h=600&fit=crop",
-  category: "Nuacht",
-  author: "Síle Ní Bhriain",
-  time: "2 uair ó shin"
-};
+// Load from same JSON as English, use same images
+const { heroStory, topStories = [], moreNews = [], trending = [] } = homepageData;
 
-const topStories = [
-  {
-    title: "Guthanna an Diaspóra: Saol i bPobal Éireannach Bhostúin",
-    image: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=400&h=250&fit=crop",
-    category: "Diaspóra",
-    time: "4 uair ó shin"
-  },
-  {
-    title: "Athbheochan an Rince Sean-nós",
-    image: "https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?w=400&h=250&fit=crop",
-    category: "Cultúr",
-    time: "5 uair ó shin"
-  },
-  {
-    title: "Éire Tuaithe: Dúshláin os comhair Bailte Beaga",
-    image: "https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?w=400&h=250&fit=crop",
-    category: "Nuacht",
-    time: "6 uair ó shin"
-  },
-];
-
-const moreNews = [
-  { title: "Plean Bonneagair Nua Fógartha ag an Rialtas", time: "8 uair ó shin" },
-  { title: "Forbairt Chuan Chorcaí ag Fáil Solas Glas", time: "10 uair ó shin" },
-  { title: "Eolaithe Éireannacha ag Déanamh Fionnachtana Mór", time: "12 uair ó shin" },
-  { title: "Líon na dTurasóirí ag Baint Amach Buaicphointí Nua", time: "14 uair ó shin" },
-];
-
+// Fallback data for sections not yet in homepage.json
 const opinionPieces = [
   { title: "Cén fáth a bhfuil gá ag Éirinn Polasaí Tithíochta a Athmhachnamh", author: "Cormac Ó Suilleabháin" },
   { title: "Todhchaí na Gaeilge inár Scoileanna", author: "Máire Brennan" },
   { title: "Gníomhú ar son na hAeráide: Am do Ghníomhartha Dána", author: "Eoin Murphy" },
-];
-
-const trending = [
-  { title: "Craobh CLG: Baile Átha Cliath vs Ciarraí", category: "Spórt" },
-  { title: "Féile Ceoil Traidisiúnta ag Filleadh ar Dhúlainn", category: "Cultúr" },
-  { title: "Gnólacht Teicneolaíochta Éireannach ag Ardú €50M", category: "Gnó" },
-  { title: "Taispeántas Nua sa Ghailearaí Náisiúnta", category: "Cultúr" },
-  { title: "Aimsir: Stoirm Atlantach ag Druidim", category: "Nuacht" },
 ];
 
 const cultureStories = [
@@ -71,12 +30,12 @@ const cultureStories = [
 
       <!-- Hero Story -->
       <article class="hero-cell">
-        <a href="/ga/nuacht/hero-story" class="hero-image-link">
+        <a href={`/ga/articles/${heroStory.slug}`} class="hero-image-link">
           <img src={heroStory.image} alt="" class="hero-image" />
         </a>
         <div class="hero-content">
           <span class="category-tag">{heroStory.category}</span>
-          <h1><a href="/ga/nuacht/hero-story">{heroStory.title}</a></h1>
+          <h1><a href={`/ga/articles/${heroStory.slug}`}>{heroStory.title}</a></h1>
           <p class="hero-summary">{heroStory.summary}</p>
           <div class="meta">
             <span class="author">Le {heroStory.author}</span>
@@ -89,12 +48,12 @@ const cultureStories = [
       <div class="stories-row">
         {topStories.map(story => (
           <article class="story-card">
-            <a href="#">
+            <a href={`/ga/articles/${story.slug}`}>
               <img src={story.image} alt="" />
             </a>
             <div class="story-content">
               <span class="category-tag small">{story.category}</span>
-              <h3><a href="#">{story.title}</a></h3>
+              <h3><a href={`/ga/articles/${story.slug}`}>{story.title}</a></h3>
               <span class="time">{story.time}</span>
             </div>
           </article>
@@ -120,7 +79,7 @@ const cultureStories = [
         <ul class="news-list">
           {moreNews.map(story => (
             <li>
-              <a href="#">
+              <a href={`/ga/articles/${story.slug}`}>
                 <span class="news-title">{story.title}</span>
                 <span class="time">{story.time}</span>
               </a>
@@ -172,7 +131,7 @@ const cultureStories = [
         <ol class="trending-list">
           {trending.map((story, i) => (
             <li>
-              <a href="#">
+              <a href={story.slug ? `/ga/articles/${story.slug}` : '#'}>
                 <span class="trending-num">{i + 1}</span>
                 <div>
                   <span class="trending-category">{story.category}</span>
