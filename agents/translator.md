@@ -93,13 +93,16 @@ Before saving:
 - [ ] All headings translated
 - [ ] Frontmatter complete with `lang: "ga"`
 
-### Step 4: Commit
+### Step 4: Summary
 
+Output:
 ```
-git add content/translated/
-git commit -m "Translator: Translated X articles to Irish"
-git push
+Translator complete:
+- Translated: X articles to Irish
+- Ready for publishing
 ```
+
+(Files are saved locally - commit when you're ready)
 
 ---
 

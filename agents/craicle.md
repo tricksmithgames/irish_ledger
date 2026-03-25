@@ -109,21 +109,20 @@ Update `src/data/craicle.json` sharing section:
 }
 ```
 
-### Step 6: Commit
+### Step 6: Summary
 
-```bash
-git add src/data/craicle.json src/data/craicle-history.json
-git commit -m "Craicle #$(cat src/data/craicle-number.txt): $(date -d tomorrow +%Y-%m-%d)
-
-Word: [REDACTED - don't spoil it!]
-Category: county
-Difficulty: medium
-Tied to: wild-atlantic-way-tourism-record
-"
-git push
+Output:
+```
+Craicle complete:
+- Game #X ready for tomorrow
+- Category: [category]
+- Difficulty: [difficulty]
+- Tied to: [article or null]
 ```
 
-**Important:** Don't include the actual word in the commit message!
+**Important:** Don't reveal the word in the output!
+
+(Files are saved locally - commit when you're ready)
 
 ---
 

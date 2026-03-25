@@ -90,34 +90,19 @@ If article lacks hero image:
 1. Note in commit message: "Needs hero image: [slug]"
 2. Use placeholder: `/images/placeholder-[category].jpg`
 
-### Step 6: Commit and Deploy
+### Step 6: Summary
 
-```bash
-git add src/content/ src/data/ content/published/
-git commit -m "Publish: $(date +%Y-%m-%d) - X articles
+Output:
+```
+Publisher complete:
+- Published: X articles to src/content/articles/
+- Updated: src/data/homepage.json
+- Archived to: content/published/
 
-Published:
-- Cork European Capital of Culture 2030 (Culture)
-- Dublin vs Kerry GAA Preview (Sport)
-- [etc.]
-
-Needs images:
-- cork-european-capital-culture-2030
-"
-git push
+Run 'npm run dev' to see changes locally.
 ```
 
-The push to `main` triggers Firebase Hosting deployment automatically.
-
-### Step 7: Verify Deployment
-
-After push:
-1. Wait 2-3 minutes for build
-2. Check https://irishledger.com (or staging URL)
-3. Verify articles appear correctly
-4. Check both /en and /ga versions
-
-If deployment fails, create issue in GitHub.
+(Files are saved locally - commit and deploy when you're ready)
 
 ---
 

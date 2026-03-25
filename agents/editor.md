@@ -111,13 +111,17 @@ stories_archived: 12
 - "Dáil committee meeting" - no diaspora angle
 ```
 
-### Step 6: Commit
+### Step 6: Summary
 
+Output a summary:
 ```
-git add content/approved/ content/scouted/archive/ content/briefs/
-git commit -m "Editor: Approved X stories for $(date +%Y-%m-%d)"
-git push
+Editor complete:
+- Approved: X stories
+- Archived: Y stories
+- See brief: content/briefs/YYYY-MM-DD.md
 ```
+
+(Files are saved locally - commit when you're ready)
 
 ---
 

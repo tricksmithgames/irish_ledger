@@ -137,13 +137,16 @@ Before saving, verify:
 - [ ] Sources listed at bottom
 - [ ] Frontmatter complete
 
-### Step 5: Save and Commit
+### Step 5: Save and Summary
 
+Save articles to `content/drafts/` and output:
 ```
-git add content/drafts/
-git commit -m "Writer: Drafted X articles for $(date +%Y-%m-%d)"
-git push
+Writer complete:
+- Drafted: X articles
+- Ready for translation
 ```
+
+(Files are saved locally - commit when you're ready)
 
 ---
 

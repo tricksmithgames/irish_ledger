@@ -2,7 +2,7 @@
 
 This directory contains the prompts for Claude Code scheduled tasks that run Irish Ledger autonomously.
 
-## Architecture
+## Architecture (Local Desktop Tasks)
 
 ```
                     ┌─────────────────┐
@@ -12,7 +12,7 @@ This directory contains the prompts for Claude Code scheduled tasks that run Iri
                              │
 ┌────────────────────────────┼────────────────────────────┐
 │                            │                            │
-│              CLAUDE CODE CLOUD SCHEDULED TASKS          │
+│         CLAUDE CODE DESKTOP SCHEDULED TASKS             │
 │                                                         │
 │  ┌─────────┐   ┌────────┐   ┌────────┐   ┌──────────┐  │
 │  │  SCOUT  │ → │ EDITOR │ → │ WRITER │ → │TRANSLATOR│  │

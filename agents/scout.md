@@ -87,14 +87,17 @@ Before creating a file:
 2. If a story on the same topic exists from the last 48 hours, skip it
 3. If it's a developing story with NEW information, create with suffix `-update`
 
-### Step 5: Commit
+### Step 5: Summary
 
-After processing all feeds:
+After processing all feeds, output a summary:
 ```
-git add content/scouted/
-git commit -m "Scout: Added X new stories, skipped Y duplicates"
-git push
+Scout complete:
+- Added: X new stories
+- Skipped: Y duplicates
+- Categories: News (3), Culture (2), Sport (1)
 ```
+
+(Files are saved locally - commit when you're ready)
 
 ### Important Rules
 
