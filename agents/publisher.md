@@ -52,24 +52,33 @@ sources:
 
 ### Step 3: Update Homepage Data
 
-Update `src/data/homepage.json` with today's stories:
+Update `src/data/homepage.json` with today's stories. Include BOTH English and Irish fields for bilingual support:
 
 ```json
 {
   "heroStory": {
     "slug": "cork-european-capital-culture-2030",
+    "slug_ga": "corcaigh-priomhchathair-cultuir-2030",
     "title": "Cork to Host European Capital of Culture 2030",
+    "title_ga": "Corcaigh le bheith ina Príomhchathair Chultúir na hEorpa 2030",
     "summary": "For the millions of Cork natives scattered...",
+    "summary_ga": "Do na milliúin daoine ó Chorcaigh atá scaipthe...",
     "image": "/images/articles/2024/03/cork-culture.jpg",
     "category": "Culture",
+    "category_ga": "Cultúr",
     "author": "Irish Ledger Staff",
-    "time": "2 hours ago"
+    "author_ga": "Foireann an Mhórleabhair Éireannaigh",
+    "time": "2 hours ago",
+    "time_ga": "2 uair ó shin"
   },
   "topStories": [
-    // Next 3 stories
+    // Next 3 stories with both EN and GA fields
   ],
   "moreNews": [
-    // Remaining stories as headlines
+    // Remaining stories with both EN and GA fields
+  ],
+  "trending": [
+    // Top 5 trending with both EN and GA fields
   ],
   "lastUpdated": "2024-03-25T12:00:00Z"
 }
@@ -120,8 +129,7 @@ src/content/articles/
 └── ...
 
 src/data/
-├── homepage.json      # Current homepage content
-├── homepage.ga.json   # Irish homepage content
+├── homepage.json      # Current homepage (bilingual: EN fields + _ga fields)
 └── archive/           # Previous days' homepages
 ```
 

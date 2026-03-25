@@ -110,20 +110,34 @@ const articlesDir = path.join(process.cwd(), 'src/content/articles');
 let articleContent = null;
 let articleMeta: Record<string, string> = {};
 
-// Search for the article file
-const searchDirs = [draftsDir, articlesDir];
+// Helper to recursively get all .md files
+function getAllMdFiles(dir: string): string[] {
+  if (!fs.existsSync(dir)) return [];
+  const files: string[] = [];
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...getAllMdFiles(fullPath));
+    } else if (entry.name.endsWith('.md')) {
+      files.push(fullPath);
+    }
+  }
+  return files;
+}
+
+// Search for the article file by matching frontmatter slug
+const searchDirs = [articlesDir, draftsDir]; // Check articles first (has correct slugs)
 for (const dir of searchDirs) {
-  if (fs.existsSync(dir)) {
-    const files = fs.readdirSync(dir).filter(f => f.endsWith('.md'));
-    for (const file of files) {
-      if (file.includes(slug as string)) {
-        const filePath = path.join(dir, file);
-        const content = fs.readFileSync(filePath, 'utf-8');
-        const { meta, body } = parseFrontmatter(content);
-        articleMeta = meta;
-        articleContent = body;
-        break;
-      }
+  const files = getAllMdFiles(dir);
+  for (const filePath of files) {
+    const content = fs.readFileSync(filePath, 'utf-8');
+    const { meta, body } = parseFrontmatter(content);
+    // Match by frontmatter slug field, or fall back to filename match
+    if (meta.slug === slug || filePath.includes(slug as string)) {
+      articleMeta = meta;
+      articleContent = body;
+      break;
     }
   }
   if (articleContent) break;

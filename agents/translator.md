@@ -21,7 +21,13 @@ Check `content/drafts/` for files with `status: "draft"` that don't have a corre
 
 For each article, create an Irish version in `content/translated/`:
 
-**Filename:** `YYYY-MM-DD-slug.ga.md`
+**Filename:** `YYYY-MM-DD-irish-slug.ga.md`
+
+**IMPORTANT:** Create an Irish slug (not the English one). For example:
+- English: `cork-european-capital-culture-2030`
+- Irish: `corcaigh-priomhchathair-cultuir-2030`
+
+The Irish slug should be URL-friendly (lowercase, hyphens, no fadas in the filename).
 
 **Process:**
 

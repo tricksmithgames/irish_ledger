@@ -30,16 +30,16 @@ const cultureStories = [
 
       <!-- Hero Story -->
       <article class="hero-cell">
-        <a href={`/ga/articles/${heroStory.slug}`} class="hero-image-link">
+        <a href={`/ga/articles/${heroStory.slug_ga || heroStory.slug}`} class="hero-image-link">
           <img src={heroStory.image} alt="" class="hero-image" />
         </a>
         <div class="hero-content">
-          <span class="category-tag">{heroStory.category}</span>
-          <h1><a href={`/ga/articles/${heroStory.slug}`}>{heroStory.title}</a></h1>
-          <p class="hero-summary">{heroStory.summary}</p>
+          <span class="category-tag">{heroStory.category_ga || heroStory.category}</span>
+          <h1><a href={`/ga/articles/${heroStory.slug_ga || heroStory.slug}`}>{heroStory.title_ga || heroStory.title}</a></h1>
+          <p class="hero-summary">{heroStory.summary_ga || heroStory.summary}</p>
           <div class="meta">
-            <span class="author">Le {heroStory.author}</span>
-            <span class="time">{heroStory.time}</span>
+            <span class="author">Le {heroStory.author_ga || heroStory.author}</span>
+            <span class="time">{heroStory.time_ga || heroStory.time}</span>
           </div>
         </div>
       </article>
@@ -48,13 +48,13 @@ const cultureStories = [
       <div class="stories-row">
         {topStories.map(story => (
           <article class="story-card">
-            <a href={`/ga/articles/${story.slug}`}>
+            <a href={`/ga/articles/${story.slug_ga || story.slug}`}>
               <img src={story.image} alt="" />
             </a>
             <div class="story-content">
-              <span class="category-tag small">{story.category}</span>
-              <h3><a href={`/ga/articles/${story.slug}`}>{story.title}</a></h3>
-              <span class="time">{story.time}</span>
+              <span class="category-tag small">{story.category_ga || story.category}</span>
+              <h3><a href={`/ga/articles/${story.slug_ga || story.slug}`}>{story.title_ga || story.title}</a></h3>
+              <span class="time">{story.time_ga || story.time}</span>
             </div>
           </article>
         ))}
@@ -79,9 +79,9 @@ const cultureStories = [
         <ul class="news-list">
           {moreNews.map(story => (
             <li>
-              <a href={`/ga/articles/${story.slug}`}>
-                <span class="news-title">{story.title}</span>
-                <span class="time">{story.time}</span>
+              <a href={`/ga/articles/${story.slug_ga || story.slug}`}>
+                <span class="news-title">{story.title_ga || story.title}</span>
+                <span class="time">{story.time_ga || story.time}</span>
               </a>
             </li>
           ))}
@@ -131,11 +131,11 @@ const cultureStories = [
         <ol class="trending-list">
           {trending.map((story, i) => (
             <li>
-              <a href={story.slug ? `/ga/articles/${story.slug}` : '#'}>
+              <a href={story.slug_ga ? `/ga/articles/${story.slug_ga}` : (story.slug ? `/ga/articles/${story.slug}` : '#')}>
                 <span class="trending-num">{i + 1}</span>
                 <div>
-                  <span class="trending-category">{story.category}</span>
-                  <span class="trending-title">{story.title}</span>
+                  <span class="trending-category">{story.category_ga || story.category}</span>
+                  <span class="trending-title">{story.title_ga || story.title}</span>
                 </div>
               </a>
             </li>

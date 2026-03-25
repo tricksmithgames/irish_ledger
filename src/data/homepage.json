@@ -1,51 +1,120 @@
 {
   "heroStory": {
     "slug": "ireland-czechia-world-cup-playoff-preview-2026",
+    "slug_ga": "eire-an-tseicia-cli-corn-domhanda-2026-coigreach",
     "title": "Ireland vs Czechia: Everything You Need to Watch Thursday's World Cup Play-Off From Abroad",
+    "title_ga": "Éire i gcoinne na Seicia: Gach Rud a Chaithfidh Tú Bheith ar Eolas Agat chun Cluiche Dé Déardaoin a Fheiceáil ón gCoigríoch",
     "summary": "Ireland face Czechia in Prague on Thursday in a World Cup 2026 play-off semi-final. Here's when to watch, how to stream, and what's at stake for the diaspora.",
+    "summary_ga": "Tá Éire ag imirt i gcoinne na Seicia i bPrág Dé Déardaoin i leathchluiche ceannais cháilithe Chorn an Domhain 2026. Seo cathain le féachaint, conas é a shruthú, agus cad atá i gceist don diaspóra.",
     "image": "/images/placeholder-sport.jpg",
     "category": "Sport",
+    "category_ga": "Spórt",
     "author": "Irish Ledger Staff",
-    "time": "Just now"
+    "author_ga": "Foireann an Mhórleabhair Éireannaigh",
+    "time": "Just now",
+    "time_ga": "Díreach anois"
   },
   "topStories": [
     {
       "slug": "donegal-kerry-nfl-division-1-final-2026-watch-abroad",
+      "slug_ga": "dun-na-ngall-ciarrai-cluiche-ceannais-roinn-1-nfl-2026-coigreach",
       "title": "Donegal vs Kerry: How to Watch This Weekend's NFL Division 1 Final From Abroad",
+      "title_ga": "Dún na nGall i gcoinne Chiarraí: Conas Cluiche Ceannais Roinn 1 NFL an Deireadh Seachtaine Seo a Fheiceáil ón gCoigríoch",
       "image": "/images/placeholder-sport.jpg",
       "category": "Sport",
-      "time": "1 hour ago"
+      "category_ga": "Spórt",
+      "time": "1 hour ago",
+      "time_ga": "1 uair ó shin"
     },
     {
       "slug": "ireland-emigration-staying-should-be-a-right",
+      "slug_ga": "eire-eisimirce-ceart-fanacht-gluin-imeacht",
       "title": "'Staying Should Be a Right': How Ireland Told a Generation to Leave — and Why That Still Hurts",
+      "title_ga": "'Ba Chóir go mBeadh Sé de Cheart Fanacht': Conas a D'inis Éire do Ghlúin Imeacht — agus Cén Fáth go nGoilleann sé Fós",
       "image": "/images/placeholder-diaspora.jpg",
       "category": "Diaspora",
-      "time": "2 hours ago"
+      "category_ga": "Diaspóra",
+      "time": "2 hours ago",
+      "time_ga": "2 uair ó shin"
     },
     {
       "slug": "ireland-housing-new-builds-collapse-diaspora",
+      "slug_ga": "eire-tithiocht-tithe-nua-titim-diaspóra",
       "title": "New Homes in Ireland Down 75%: What the Construction Collapse Means If You're Thinking of Moving Back",
+      "title_ga": "Tithe Nua in Éirinn Síos 75%: Cad is Brí le Titim na Tógála Más Ag Smaoineamh ar Theacht Abhaile Tú",
       "image": "/images/placeholder-news.jpg",
       "category": "News",
-      "time": "3 hours ago"
+      "category_ga": "Nuacht",
+      "time": "3 hours ago",
+      "time_ga": "3 uair ó shin"
     }
   ],
   "moreNews": [
     {
       "slug": "housing-crisis-gaeltacht-irish-language-death",
+      "slug_ga": "gearceim-tithiochta-gaeltacht-bas-na-gaeilge",
       "title": "The Housing Crisis Is Hollowing Out the Heartland of the Irish Language — and We Should All Be Worried",
-      "time": "8 hours ago"
+      "title_ga": "Tá an Ghéarchéim Tithíochta ag Folmhú Chroílár na Gaeilge — agus Ba Chóir go mBeadh Imní ar Chách",
+      "time": "8 hours ago",
+      "time_ga": "8 n-uaire ó shin"
     },
     {
       "slug": "shared-home-place-diaspora-voices-how-to-get-involved",
+      "slug_ga": "baille-comhroinnte-glórtha-diaspóra-conas-páirt-a-ghlacadh",
       "title": "Ireland Wants to Hear From You: How to Get Involved in the New Diaspora Voices Project",
-      "time": "10 hours ago"
+      "title_ga": "Tá Éire ag Iarraidh Éisteacht Leat: Conas Páirt a Ghlacadh sa Tionscadal Nua Diaspóra",
+      "time": "10 hours ago",
+      "time_ga": "10 n-uaire ó shin"
     },
     {
       "slug": "what-irish-emigrants-miss-about-home",
+      "slug_ga": "cad-a-chaileann-eireannach-thar-lear-faoi-bhaile",
       "title": "'They Don't Take Themselves Too Seriously': What Irish People Abroad Actually Miss About Home",
-      "time": "12 hours ago"
+      "title_ga": "'Ní Glacann Siad Iad Féin Rósháraíoch': Cad é go Díreach a Chailleann Éireannaigh Thar Lear faoi Bhaile",
+      "time": "12 hours ago",
+      "time_ga": "12 uair ó shin"
+    }
+  ],
+  "trending": [
+    {
+      "slug": "ireland-czechia-world-cup-playoff-preview-2026",
+      "slug_ga": "eire-an-tseicia-cli-corn-domhanda-2026-coigreach",
+      "title": "Ireland vs Czechia World Cup Play-Off",
+      "title_ga": "Éire i gcoinne na Seicia - Corn an Domhain",
+      "category": "Sport",
+      "category_ga": "Spórt"
+    },
+    {
+      "slug": "donegal-kerry-nfl-division-1-final-2026-watch-abroad",
+      "slug_ga": "dun-na-ngall-ciarrai-cluiche-ceannais-roinn-1-nfl-2026-coigreach",
+      "title": "Donegal vs Kerry NFL Final",
+      "title_ga": "Dún na nGall i gcoinne Chiarraí - Cluiche Ceannais",
+      "category": "Sport",
+      "category_ga": "Spórt"
+    },
+    {
+      "slug": "housing-crisis-gaeltacht-irish-language-death",
+      "slug_ga": "gearceim-tithiochta-gaeltacht-bas-na-gaeilge",
+      "title": "Housing Crisis Threatens Irish Language",
+      "title_ga": "Géarchéim Tithíochta ag Bagairt ar an nGaeilge",
+      "category": "News",
+      "category_ga": "Nuacht"
+    },
+    {
+      "slug": "ireland-emigration-staying-should-be-a-right",
+      "slug_ga": "eire-eisimirce-ceart-fanacht-gluin-imeacht",
+      "title": "Emigration: Staying Should Be a Right",
+      "title_ga": "Eisimirce: Ba Cheart Fanacht",
+      "category": "Diaspora",
+      "category_ga": "Diaspóra"
+    },
+    {
+      "slug": "what-irish-emigrants-miss-about-home",
+      "slug_ga": "cad-a-chaileann-eireannach-thar-lear-faoi-bhaile",
+      "title": "What Irish Abroad Miss About Home",
+      "title_ga": "Cad a Chailleann Éireannaigh faoi Bhaile",
+      "category": "Culture",
+      "category_ga": "Cultúr"
     }
   ],
   "lastUpdated": "2026-03-24T12:00:00Z"

@@ -36,12 +36,16 @@ Create a new file in `content/drafts/`:
 
 **Filename:** `YYYY-MM-DD-slug.md`
 
+**IMPORTANT:** The `slug` in the filename MUST exactly match the `slug` in the frontmatter. For example:
+- Filename: `2026-03-24-cork-culture-2030.md`
+- Frontmatter slug: `cork-culture-2030`
+
 **Structure:**
 
 ```markdown
 ---
 title: "Your Original Headline"
-slug: "url-friendly-slug"
+slug: "url-friendly-slug"  # MUST match the filename slug exactly!
 description: "Meta description for SEO, 150-160 chars"
 category: "Culture"
 author: "Irish Ledger Staff"
