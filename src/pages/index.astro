@@ -61,13 +61,13 @@ const cultureStories = [
         ))}
       </div>
 
-      <!-- Opinion Section -->
-      <section class="section-cell">
-        <h2 class="section-title">{t('section.opinion')}</h2>
+      <!-- Opinion Section (Coming Soon) -->
+      <section class="section-cell coming-soon-section">
+        <h2 class="section-title">{t('section.opinion')} <span class="coming-soon-badge">Coming Soon</span></h2>
         <div class="opinion-grid">
           {opinionPieces.map(piece => (
-            <article class="opinion-item">
-              <h3><a href="#">{piece.title}</a></h3>
+            <article class="opinion-item placeholder">
+              <h3>{piece.title}</h3>
               <span class="author">{piece.author}</span>
             </article>
           ))}
@@ -89,14 +89,14 @@ const cultureStories = [
         </ul>
       </section>
 
-      <!-- Culture Section -->
-      <section class="section-cell">
-        <h2 class="section-title">{t('section.culture')}</h2>
+      <!-- Culture Section (Coming Soon) -->
+      <section class="section-cell coming-soon-section">
+        <h2 class="section-title">{t('section.culture')} <span class="coming-soon-badge">Coming Soon</span></h2>
         <div class="culture-grid">
           {cultureStories.map(story => (
-            <article class="culture-item">
+            <article class="culture-item placeholder">
               <span class="culture-category">{story.category}</span>
-              <h3><a href="#">{story.title}</a></h3>
+              <h3>{story.title}</h3>
             </article>
           ))}
         </div>
@@ -351,6 +351,27 @@ const cultureStories = [
     color: var(--color-accent);
     font-weight: 600;
     margin-bottom: 0.25rem;
+  }
+
+  /* Coming Soon Placeholders */
+  .coming-soon-section {
+    opacity: 0.6;
+  }
+
+  .coming-soon-badge {
+    font-size: 0.6rem;
+    background: var(--color-accent);
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .placeholder h3 {
+    color: var(--color-text-secondary);
   }
 
   /* Sidebar */
