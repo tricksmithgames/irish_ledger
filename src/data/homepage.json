@@ -1,15 +1,48 @@
 {
   "heroStory": {
-    "slug": "placeholder-hero",
+    "slug": "welcome-to-irish-ledger",
     "title": "Welcome to Irish Ledger",
-    "summary": "Your daily source for Irish news, culture, and connection to home.",
+    "summary": "Your daily source for Irish news, culture, and connection to home. We serve the 70 million strong Irish diaspora worldwide.",
     "image": "https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?w=1200&h=600&fit=crop",
     "category": "News",
     "author": "Irish Ledger Staff",
     "time": "Just now"
   },
-  "topStories": [],
-  "moreNews": [],
-  "trending": [],
+  "topStories": [
+    {
+      "slug": "diaspora-boston",
+      "title": "Diaspora Voices: Life in Boston's Irish Community",
+      "image": "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=400&h=250&fit=crop",
+      "category": "Diaspora",
+      "time": "4 hours ago"
+    },
+    {
+      "slug": "sean-nos-revival",
+      "title": "The Revival of Sean-nós Dancing",
+      "image": "https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?w=400&h=250&fit=crop",
+      "category": "Culture",
+      "time": "5 hours ago"
+    },
+    {
+      "slug": "rural-ireland-challenges",
+      "title": "Rural Ireland: Challenges Facing Small Towns",
+      "image": "https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?w=400&h=250&fit=crop",
+      "category": "News",
+      "time": "6 hours ago"
+    }
+  ],
+  "moreNews": [
+    { "slug": "infrastructure-plan", "title": "Government Announces New Infrastructure Plan", "time": "8 hours ago" },
+    { "slug": "cork-harbour", "title": "Cork Harbour Development Gets Green Light", "time": "10 hours ago" },
+    { "slug": "science-breakthrough", "title": "Irish Scientists Make Breakthrough Discovery", "time": "12 hours ago" },
+    { "slug": "tourism-record", "title": "Tourism Numbers Reach Record Highs", "time": "14 hours ago" }
+  ],
+  "trending": [
+    { "slug": "gaa-championship", "title": "GAA Championship: Dublin vs Kerry Preview", "category": "Sport" },
+    { "slug": "doolin-festival", "title": "Traditional Music Festival Returns to Doolin", "category": "Culture" },
+    { "slug": "tech-funding", "title": "Irish Tech Startup Raises €50M in Funding", "category": "Business" },
+    { "slug": "national-gallery", "title": "New Exhibit Opens at National Gallery", "category": "Culture" },
+    { "slug": "atlantic-storm", "title": "Weather: Atlantic Storm Approaching", "category": "News" }
+  ],
   "lastUpdated": "2024-03-25T12:00:00Z"
 }

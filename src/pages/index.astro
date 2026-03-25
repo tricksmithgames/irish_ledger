@@ -1,60 +1,19 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getLangFromUrl, useTranslations } from '../i18n/translations';
+import homepageData from '../data/homepage.json';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-// Placeholder data - would come from CMS/database
-const heroStory = {
-  title: "Historic Agreement Reached on Irish Language Act",
-  summary: "Cross-party support sees landmark legislation pass after decades of campaigning by language advocates across the island.",
-  image: "https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?w=1200&h=600&fit=crop",
-  category: "News",
-  author: "Síle Ní Bhriain",
-  time: "2 hours ago"
-};
+// Load from JSON data file (updated by Publisher agent)
+const { heroStory, topStories = [], moreNews = [], trending = [] } = homepageData;
 
-const topStories = [
-  {
-    title: "Diaspora Voices: Life in Boston's Irish Community",
-    image: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=400&h=250&fit=crop",
-    category: "Diaspora",
-    time: "4 hours ago"
-  },
-  {
-    title: "The Revival of Sean-nós Dancing",
-    image: "https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?w=400&h=250&fit=crop",
-    category: "Culture",
-    time: "5 hours ago"
-  },
-  {
-    title: "Rural Ireland: Challenges Facing Small Towns",
-    image: "https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?w=400&h=250&fit=crop",
-    category: "News",
-    time: "6 hours ago"
-  },
-];
-
-const moreNews = [
-  { title: "Government Announces New Infrastructure Plan", time: "8 hours ago" },
-  { title: "Cork Harbour Development Gets Green Light", time: "10 hours ago" },
-  { title: "Irish Scientists Make Breakthrough Discovery", time: "12 hours ago" },
-  { title: "Tourism Numbers Reach Record Highs", time: "14 hours ago" },
-];
-
+// Fallback data for sections not yet in homepage.json
 const opinionPieces = [
   { title: "Why Ireland Needs to Rethink Housing Policy", author: "Cormac Ó Suilleabháin" },
   { title: "The Future of Irish in Our Schools", author: "Máire Brennan" },
   { title: "Climate Action: Time for Bold Moves", author: "Eoin Murphy" },
-];
-
-const trending = [
-  { title: "GAA Championship: Dublin vs Kerry Preview", category: "Sport" },
-  { title: "Traditional Music Festival Returns to Doolin", category: "Culture" },
-  { title: "Irish Tech Startup Raises €50M in Funding", category: "Business" },
-  { title: "New Exhibit Opens at National Gallery", category: "Culture" },
-  { title: "Weather: Atlantic Storm Approaching", category: "News" },
 ];
 
 const cultureStories = [
