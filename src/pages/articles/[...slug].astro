@@ -1,0 +1,265 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/translations';
+import fs from 'node:fs';
+import path from 'node:path';
+
+// Helper to parse frontmatter
+function parseFrontmatter(content: string) {
+  const match = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+  if (!match) return { meta: {}, body: content };
+
+  const frontmatter = match[1];
+  const body = match[2];
+
+  const meta: Record<string, string> = {};
+  frontmatter.split('\n').forEach(line => {
+    const colonIndex = line.indexOf(':');
+    if (colonIndex > 0) {
+      const key = line.slice(0, colonIndex).trim();
+      const value = line.slice(colonIndex + 1).trim().replace(/^["']|["']$/g, '');
+      meta[key] = value;
+    }
+  });
+
+  return { meta, body };
+}
+
+// Get all article slugs from content directories and homepage.json
+export function getStaticPaths() {
+  const paths: { params: { slug: string } }[] = [];
+  const seenSlugs = new Set<string>();
+
+  // Get slugs from homepage.json
+  try {
+    const homepagePath = path.join(process.cwd(), 'src/data/homepage.json');
+    if (fs.existsSync(homepagePath)) {
+      const homepage = JSON.parse(fs.readFileSync(homepagePath, 'utf-8'));
+
+      if (homepage.heroStory?.slug) {
+        paths.push({ params: { slug: homepage.heroStory.slug } });
+        seenSlugs.add(homepage.heroStory.slug);
+      }
+
+      for (const story of homepage.topStories || []) {
+        if (story.slug && !seenSlugs.has(story.slug)) {
+          paths.push({ params: { slug: story.slug } });
+          seenSlugs.add(story.slug);
+        }
+      }
+
+      for (const story of homepage.moreNews || []) {
+        if (story.slug && !seenSlugs.has(story.slug)) {
+          paths.push({ params: { slug: story.slug } });
+          seenSlugs.add(story.slug);
+        }
+      }
+
+      for (const story of homepage.trending || []) {
+        if (story.slug && !seenSlugs.has(story.slug)) {
+          paths.push({ params: { slug: story.slug } });
+          seenSlugs.add(story.slug);
+        }
+      }
+    }
+  } catch (e) {
+    console.error('Error reading homepage.json:', e);
+  }
+
+  // Get slugs from content/drafts
+  const draftsDir = path.join(process.cwd(), 'content/drafts');
+  if (fs.existsSync(draftsDir)) {
+    const files = fs.readdirSync(draftsDir).filter(f => f.endsWith('.md'));
+    for (const file of files) {
+      // Extract slug from filename (YYYY-MM-DD-slug.md -> slug)
+      const slug = file.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\.md$/, '');
+      if (!seenSlugs.has(slug)) {
+        paths.push({ params: { slug } });
+        seenSlugs.add(slug);
+      }
+    }
+  }
+
+  // Get slugs from src/content/articles
+  const articlesDir = path.join(process.cwd(), 'src/content/articles');
+  if (fs.existsSync(articlesDir)) {
+    const files = fs.readdirSync(articlesDir, { recursive: true })
+      .filter(f => typeof f === 'string' && f.endsWith('.md'));
+    for (const file of files) {
+      const slug = (file as string).replace(/\.md$/, '').split('/').pop() || '';
+      if (slug && !seenSlugs.has(slug)) {
+        paths.push({ params: { slug } });
+        seenSlugs.add(slug);
+      }
+    }
+  }
+
+  return paths;
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Get the slug from the URL
+const { slug } = Astro.params;
+
+// Try to find the article in content/drafts or src/content/articles
+const draftsDir = path.join(process.cwd(), 'content/drafts');
+const articlesDir = path.join(process.cwd(), 'src/content/articles');
+
+let articleContent = null;
+let articleMeta: Record<string, string> = {};
+
+// Search for the article file
+const searchDirs = [draftsDir, articlesDir];
+for (const dir of searchDirs) {
+  if (fs.existsSync(dir)) {
+    const files = fs.readdirSync(dir).filter(f => f.endsWith('.md'));
+    for (const file of files) {
+      if (file.includes(slug as string)) {
+        const filePath = path.join(dir, file);
+        const content = fs.readFileSync(filePath, 'utf-8');
+        const { meta, body } = parseFrontmatter(content);
+        articleMeta = meta;
+        articleContent = body;
+        break;
+      }
+    }
+  }
+  if (articleContent) break;
+}
+
+// Fallback for articles not yet written
+if (!articleContent) {
+  articleMeta = {
+    title: slug?.toString().split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ') || 'Article',
+    category: 'News',
+    author: 'Irish Ledger Staff',
+    date: new Date().toISOString().split('T')[0]
+  };
+  articleContent = `
+This article is coming soon.
+
+Check back later for the full story, or [return to the homepage](/).
+  `;
+}
+---
+
+<Layout title={articleMeta.title} description={articleMeta.description || articleMeta.title}>
+  <article class="article-page">
+    <header class="article-header">
+      <span class="category-tag">{articleMeta.category}</span>
+      <h1>{articleMeta.title}</h1>
+      <div class="article-meta">
+        <span class="author">By {articleMeta.author}</span>
+        <span class="date">{articleMeta.date}</span>
+      </div>
+    </header>
+
+    <div class="article-body" set:html={articleContent.replace(/\n\n/g, '</p><p>').replace(/^/, '<p>').replace(/$/, '</p>')} />
+
+    {articleMeta.sources && (
+      <footer class="article-sources">
+        <p><strong>Sources:</strong> {articleMeta.sources}</p>
+      </footer>
+    )}
+
+    <nav class="article-nav">
+      <a href="/">← Back to Home</a>
+    </nav>
+  </article>
+</Layout>
+
+<style>
+  .article-page {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .article-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .category-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .article-header h1 {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .article-meta {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+  }
+
+  .article-meta .author {
+    font-weight: 600;
+  }
+
+  .article-meta .date::before {
+    content: "·";
+    margin: 0 0.5rem;
+  }
+
+  .article-body {
+    font-size: 1.125rem;
+    line-height: 1.8;
+  }
+
+  .article-body :global(p) {
+    margin-bottom: 1.5rem;
+  }
+
+  .article-body :global(h2) {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .article-body :global(a) {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+
+  .article-sources {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+  }
+
+  .article-nav {
+    margin-top: 2rem;
+    padding-top: 1rem;
+  }
+
+  .article-nav a {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    .article-header h1 {
+      font-size: 1.75rem;
+    }
+
+    .article-body {
+      font-size: 1rem;
+    }
+  }
+</style>

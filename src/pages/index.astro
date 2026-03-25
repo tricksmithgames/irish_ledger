@@ -31,12 +31,12 @@ const cultureStories = [
 
       <!-- Hero Story -->
       <article class="hero-cell">
-        <a href="/news/hero-story" class="hero-image-link">
+        <a href={`/articles/${heroStory.slug}`} class="hero-image-link">
           <img src={heroStory.image} alt="" class="hero-image" />
         </a>
         <div class="hero-content">
           <span class="category-tag">{heroStory.category}</span>
-          <h1><a href="/news/hero-story">{heroStory.title}</a></h1>
+          <h1><a href={`/articles/${heroStory.slug}`}>{heroStory.title}</a></h1>
           <p class="hero-summary">{heroStory.summary}</p>
           <div class="meta">
             <span class="author">By {heroStory.author}</span>
@@ -49,12 +49,12 @@ const cultureStories = [
       <div class="stories-row">
         {topStories.map(story => (
           <article class="story-card">
-            <a href="#">
+            <a href={`/articles/${story.slug}`}>
               <img src={story.image} alt="" />
             </a>
             <div class="story-content">
               <span class="category-tag small">{story.category}</span>
-              <h3><a href="#">{story.title}</a></h3>
+              <h3><a href={`/articles/${story.slug}`}>{story.title}</a></h3>
               <span class="time">{story.time}</span>
             </div>
           </article>
@@ -80,7 +80,7 @@ const cultureStories = [
         <ul class="news-list">
           {moreNews.map(story => (
             <li>
-              <a href="#">
+              <a href={`/articles/${story.slug}`}>
                 <span class="news-title">{story.title}</span>
                 <span class="time">{story.time}</span>
               </a>
@@ -132,7 +132,7 @@ const cultureStories = [
         <ol class="trending-list">
           {trending.map((story, i) => (
             <li>
-              <a href="#">
+              <a href={story.slug ? `/articles/${story.slug}` : '#'}>
                 <span class="trending-num">{i + 1}</span>
                 <div>
                   <span class="trending-category">{story.category}</span>
